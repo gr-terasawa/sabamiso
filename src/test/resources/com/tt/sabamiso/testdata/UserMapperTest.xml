@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <users user_id="1" user_name="tera1@test.jp" password="aaaa" company_id="1" nickname="寺澤１" enabled="1" entry_date="2014-01-16" update_date="2014-01-16" />
+  <users user_id="2" user_name="tera2@test.jp" password="bbbb" company_id="2" nickname="寺澤２" enabled="1" entry_date="2014-01-16" update_date="2014-01-16" />
+</dataset>
