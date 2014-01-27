@@ -1,9 +1,10 @@
 package com.tt.sabamiso.integration;
 
-import com.tt.sabamiso.common.integration.Mapper;
+import java.util.List;
+
 import com.tt.sabamiso.domain.User;
 import com.tt.sabamiso.domain.UserExample;
-import java.util.List;
+import com.tt.sabamiso.framework.core.integration.Mapper;
 
 public interface UserMapper extends Mapper {
 

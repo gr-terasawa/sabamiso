@@ -39,7 +39,7 @@
 
   <beans:bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
     <beans:property name="basePackage" value="com.tt.sabamiso" />
-    <beans:property name="markerInterface" value="com.tt.sabamiso.common.integration.Mapper" />
+    <beans:property name="markerInterface" value="com.tt.sabamiso.framework.core.integration.Mapper" />
   </beans:bean>
 
   <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

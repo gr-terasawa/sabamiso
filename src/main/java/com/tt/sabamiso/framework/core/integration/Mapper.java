@@ -3,7 +3,7 @@
  * Redistribution in source and binary forms, with or without
  * modification, is limited by contract. 
  */
-package com.tt.sabamiso.common.integration;
+package com.tt.sabamiso.framework.core.integration;
 
 
 /**

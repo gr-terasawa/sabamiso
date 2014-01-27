@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page session="false"%>
 
             <div class="row">
                 <div class="col-lg-12">

@@ -8,11 +8,8 @@ package com.tt.sabamiso.integration;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import java.io.FileInputStream;
 import java.util.List;
 
-import org.dbunit.dataset.IDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,11 +27,6 @@ public class UserMapperTest extends AbstractTestCase {
     /** テスト対象 **/
     @Autowired
     private UserMapper userMapper;
-
-    @Override
-    protected IDataSet getIDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new FileInputStream("src/test/resources/com/tt/sabamiso/testdata/UserMapperTest.xml"));
-    }
 
     @Test
     public void 全ユーザ取得() throws Exception {
@@ -62,6 +54,5 @@ public class UserMapperTest extends AbstractTestCase {
         assertThat(user.getCompanyId(), is(1));
         assertThat(user.getNickname(), is("寺澤１"));
     }
-
 
 }

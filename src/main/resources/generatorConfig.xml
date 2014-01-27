@@ -15,7 +15,7 @@
 
     <jdbcConnection
         driverClass="org.gjt.mm.mysql.Driver" 
-        connectionURL="jdbc:mysql://127.0.0.1:3306/mygmor_template_test"
+        connectionURL="jdbc:mysql://127.0.0.1:3306/sabamiso"
         userId="unittest"
         password="unittest">
     </jdbcConnection>
@@ -27,7 +27,7 @@
     <javaModelGenerator targetPackage="com.tt.sabamiso.domain" targetProject="sabamiso">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
-      <property name="rootClass" value="com.tt.sabamiso.common.domain.BaseDomain" />
+      <property name="rootClass" value="com.tt.sabamiso.framework.core.domain.BaseDomain" />
     </javaModelGenerator>
 
     <sqlMapGenerator targetPackage="com.tt.sabamiso.integration" targetProject="sabamiso\src\main\resources">
@@ -36,7 +36,7 @@
 
     <javaClientGenerator type="XMLMAPPER" targetPackage="com.tt.sabamiso.integration" targetProject="sabamiso">
       <property name="enableSubPackages" value="true" />
-      <property name="rootInterface" value="com.tt.sabamiso.common.integration.Mapper" />
+      <property name="rootInterface" value="com.tt.sabamiso.framework.core.integration.Mapper" />
     </javaClientGenerator>
 
     <!-- 対象テーブルを指定 -->
