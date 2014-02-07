@@ -4,7 +4,6 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
  
-    <http pattern="/login" security="none"/>
     <http pattern="/resources/**" security="none"/>
     <http pattern="/css/**" security="none"/>
     <http pattern="/js/**" security="none"/>
@@ -12,11 +11,15 @@
     <http pattern="/fonts/**" security="none"/>
     <http pattern="/font-awesome/**" security="none"/>
 
-    <http auto-config="true">
+    <http auto-config="true" >
+        <!-- loginは全てのユーザがアクセス可能 security="none"にするとcsrfが動作しないため、IS_AUTHENTICATED_ANONYMOUSLYで許可-->
+        <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/invalidSession.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/**" access="ROLE_USER" />
         <form-login login-page="/login" default-target-url="/" authentication-failure-url="/login?error=1"/>
         <logout logout-success-url="/login" invalidate-session="true" logout-url="/logout" />
-        <intercept-url pattern="/**" access="ROLE_USER" />
         <remember-me services-ref="rememberMeServices"/>
+        <csrf />
     </http>
 
     <beans:bean id="rememberMeFilter"

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -43,6 +42,7 @@
                 <!-- Change this to a button or input when using this as a form -->
                 <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
               </fieldset>
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
           </div>
           <div class="panel-footer">

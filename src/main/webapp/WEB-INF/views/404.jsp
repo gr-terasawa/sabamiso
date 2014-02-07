@@ -10,16 +10,16 @@
     <title>Sabamiso</title>
 
     <!-- Core CSS - Include with every page -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<spring:url value="/css/bootstrap.min.css" />" rel="stylesheet">
+    <link href="<spring:url value="/font-awesome/css/font-awesome.css" />" rel="stylesheet">
 
     <!-- SB Admin CSS - Include with every page -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="<spring:url value="/css/sb-admin.css" />" rel="stylesheet">
 
 </head>
 
-<body>
+<body style="padding:10px;">
     <h1>404 The requested resources is not available.</h1>
-    <a href="<spring:url value="/" />">home</a>
+    <i class="fa fa-home"></i><a href="<spring:url value="/" />">home</a>
 </body>
 </html>

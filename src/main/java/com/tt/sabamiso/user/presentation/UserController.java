@@ -17,10 +17,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tt.sabamiso.domain.User;
 import com.tt.sabamiso.user.service.UserService;
@@ -39,13 +43,69 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
-        logger.info("Welcome user!");
-        model.addAttribute("users", userService.getAllUser());
-
-        return "user/users";
+    /**
+     * formモデルのバインダーの初期化。リクエストパラメタをモデルに変換するたびに呼ばれる。
+     */
+    @InitBinder("form")
+    public void initBinder(WebDataBinder binder) {
+        logger.info("UserController#initBinder");
+        binder.setDisallowedFields("user.enabled", "user.entryDate", "user.updateDate");
     }
+
+    /**
+     * モデルオブジェクトの初期化
+     */
+    @ModelAttribute("form")
+    public Form newRequest(@RequestParam(required = false, value = "user.userId") Integer userId) {
+        logger.info("UserController#newRequest");
+        Form form = new Form();
+        //
+        User user = null;
+        if (userId == null) {
+            user = new User();
+        } else {
+            user = this.userService.getUser(Integer.valueOf(userId));
+        }
+        //
+        form.setUser(user);
+        return form;
+    }
+
+    @RequestMapping(value = "/input", method = RequestMethod.GET)
+    public String input(Form form, Model model) {
+        // 既にnewRequestでモデルをDBから取り出し、設定しているので何もする必要がない
+        return "user.input";
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@Valid Form form, BindingResult result, RedirectAttributes attributes) throws Exception {
+        if (result.hasErrors()) {
+            return "user.input";
+        }
+        // データ更新
+        form.user.setEnabled(true);
+        form.user.setEntryDate(new Date());
+        this.userService.saveUser(form.user);
+        attributes.addFlashAttribute("message", "ユーザーの登録が完了しました。");
+        return "redirect:/user/input";
+    }
+
+//    @ModelAttribute("user")
+//    public User newRequest(@RequestParam(required=false, value="user.userId") Integer id) {
+//        logger.info("UserController#newRequest");
+//        if (id == null) {
+//            return null;
+//        }
+//        return this.userService.getUser(id);
+//    }
+
+//    @RequestMapping(value = "/list", method = RequestMethod.GET)
+//    public String list(Model model) {
+//        logger.info("UserController#list");
+//        model.addAttribute("users", userService.getAllUser());
+//
+//        return "user/users";
+//    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showForm(Model model) {
@@ -93,4 +153,39 @@ public class UserController {
         mv.addObject("users", userService.getAllUser());
         return mv;
     }
+
+    // フォーム(HTML用のパラメタを受け取れるように作っておいた方がよいと思います)
+    public static class Form {
+
+        @Valid
+        private User user;
+
+        private String message;
+
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        
+        /**
+         * @return the message
+         */
+        public String getMessage() {
+            return message;
+        }
+
+        
+        /**
+         * @param message the message to set
+         */
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+    }
+
 }

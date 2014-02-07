@@ -19,4 +19,12 @@
     <put-attribute name="body" value="/WEB-INF/views/user/user.jsp" />
   </definition>
 
+  <definition name="user.input" extends="baseLayout">
+    <put-attribute name="body" value="/WEB-INF/views/user/input.jsp" />
+  </definition>
+
+  <definition name="file.upload" extends="baseLayout">
+    <put-attribute name="body" value="/WEB-INF/views/file/upload.jsp" />
+  </definition>
+
 </tiles-definitions>

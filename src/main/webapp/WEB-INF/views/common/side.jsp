@@ -15,7 +15,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="<spring:url value="/" />"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -97,6 +97,9 @@
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="<spring:url value="/user/" />"><i class="fa fa-user fa-fw"></i> User</a>
                     </li>
                 </ul>
                 <!-- /#side-menu -->

@@ -56,7 +56,7 @@
   <!-- Tilesの設定 -->
   <bean id="tilesConfigurer"
     class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
-    p:definitions="/WEB-INF/views/common/tiles.xml" />
+    p:definitions="/WEB-INF/views/tiles.xml" />
 
   <!-- Teils View Resolver -->
   <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -95,5 +95,9 @@
     <!-- Trace -->
     <aop:advisor advice-ref="customizableTraceInterceptor" pointcut-ref="pointcut-service" />
   </aop:config>
+
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="maxUploadSize" value="10000000"/>
+  </bean>
 
 </beans>

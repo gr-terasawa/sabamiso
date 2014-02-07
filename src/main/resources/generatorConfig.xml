@@ -48,6 +48,14 @@
             selectByExampleQueryId="false">
       <property name="useActualColumnNames" value="false" />
     </table>
+    <table tableName="file" domainObjectName="File"
+            enableDeleteByExample="false"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            selectByPrimaryKeyQueryId="false"
+            selectByExampleQueryId="false">
+      <property name="useActualColumnNames" value="false" />
+    </table>
 
   </context>
 </generatorConfiguration>

@@ -6,6 +6,7 @@
   </div>
   <!-- /.col-lg-12 -->
 </div>
+<!-- 
 <div class="panel panel-default">
   <div class="panel-heading">
     <i class="fa fa-user fa-fw"></i> 編集
@@ -47,7 +48,7 @@
   </div>
 
 </div>
-
+ -->
 <c:if test="${!empty users}">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -88,7 +89,7 @@
     <!-- /.panel-body -->
   </div>
 </c:if>
-
+<!--
 <script type="text/javascript" src='<c:url value="/resources/common.js"/>'></script>
 <script type="text/javascript" src='<c:url value="/resources/registration.js"/>'></script>
 <script type="text/javascript">
@@ -97,3 +98,4 @@
 		projectUrl = projectUrl.substring(0, projectUrl.indexOf(";", 0));
 	}
 </script>
+  -->
